@@ -20,7 +20,8 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       expect(response_json.count).to eq 1
     end
 
-    it 'returns article id' do
+    it 'returns article title' do
+      binding.pry
       expect(response_json["entries"][0]["title"]).to eq "Breaking News"
     end
 
