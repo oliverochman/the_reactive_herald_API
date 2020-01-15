@@ -1,28 +1,32 @@
 RSpec.describe Api::V1::ArticlesController, type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
+  let!(:article) do
+    create(:article,
+          title: 'Breaking News',
+          body: 'Some breaking content')
+  end
 
   describe 'GET /api/v1/articles/:id' do
-    let!(:existing_entries) do
-      create(:article,
-            id: 1,
-            title: 'Breaking News',
-            body: 'Some breaking content')
-    end
-
     before do
-      get '/api/v1/articles/1', headers: headers
+      get "/api/v1/articles/#{article.id}", headers: headers
     end
 
     it 'returns a 200 response status' do
       expect(response).to have_http_status 200
     end
 
-    it 'returns an article' do
-      expect(response_json.count).to eq 1
+    it 'returns article title' do
+      expect(response_json["title"]).to eq "Breaking News"
+    end
+  end
+
+  describe 'GET /api/v1/articles/:id' do
+    before do
+      get "/api/v1/articles/10000", headers: headers
     end
 
-    it 'returns article title' do
-      expect(response_json["entries"]["title"]).to eq "Breaking News"
+    it 'returns error if ID does not exist' do
+      expect(response_json["error"]).to eq "ID does not exist"
     end
 
   end
