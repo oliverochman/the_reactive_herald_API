@@ -202,6 +202,7 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    will_paginate (3.1.8)
     zeitwerk (2.2.2)
 
 PLATFORMS
@@ -223,9 +224,10 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
+  will_paginate (~> 3.1.0)
 
 RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   2.1.2
+   2.1.4

@@ -1,12 +1,14 @@
 RSpec.describe Articles, type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
-  let!(:article) do
-    create(:article,
-          title: 'Breaking News',
-          body: 'Some breaking content')
-  end
+  
   
   describe 'GET /api/v1/articles/:id' do
+    let!(:article) do
+      create(:article,
+            title: 'Breaking News',
+            body: 'Some breaking content')
+    end
+
     describe 'Successfully' do
       before do
         get "/api/v1/articles/#{article.id}", headers: headers
@@ -17,7 +19,7 @@ RSpec.describe Articles, type: :request do
       end
   
       it 'returns article title' do
-        expect(response_json["title"]).to eq "Breaking News"
+        expect(response_json["article"]["title"]).to eq "Breaking News"
       end
     end
   
@@ -33,8 +35,16 @@ RSpec.describe Articles, type: :request do
   end
 
   describe 'GET /api/v1/articles' do
+    let!(:article) do
+      10.times do
+        create(:article,
+              title: 'Breaking News',
+              body: 'Some breaking content')
+      end
+    end
+
     before do
-      get '/api/v1/articles', headers: headers
+      get '/api/v1/articles?page=1', headers: headers
     end
 
     it 'return a 200 response status' do
@@ -42,7 +52,7 @@ RSpec.describe Articles, type: :request do
     end
 
     it 'returns 4 articles' do
-      expect(response_json['articles']).to eq 4
+      expect(response_json['articles'].count).to eq 4
     end
   end
 end

@@ -2,8 +2,8 @@ class Api::V1::ArticlesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def index
-    articles = Article.all
-    render json: articles
+    articles = Article.paginate(page: params[:page], per_page: 4)
+    render json: { articles: articles } 
   end
 
   def show
