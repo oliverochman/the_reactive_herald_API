@@ -1,4 +1,4 @@
-RSpec.describe Api::V1::ArticlesController, type: :request do
+RSpec.describe 'GET /api/v1/articles/:id', type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
   let!(:article) do
     create(:article,
@@ -6,7 +6,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
           body: 'Some breaking content')
   end
 
-  describe 'GET /api/v1/articles/:id' do
+  describe 'Successfully' do
     before do
       get "/api/v1/articles/#{article.id}", headers: headers
     end
@@ -20,7 +20,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
   end
 
-  describe 'GET /api/v1/articles/:id' do
+  describe 'With invalid :id' do
     before do
       get "/api/v1/articles/10000", headers: headers
     end

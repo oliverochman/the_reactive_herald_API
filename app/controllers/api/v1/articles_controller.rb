@@ -6,6 +6,8 @@ class Api::V1::ArticlesController < ApplicationController
     render json: article 
   end
 
+  private
+  
   def not_found
     render json: { error: "ID does not exist"}
   end
