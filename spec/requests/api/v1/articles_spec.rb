@@ -4,12 +4,13 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
   describe 'GET /api/v1/articles/:id' do
     let!(:existing_entries) do
       create(:article,
+            id: 1,
             title: 'Breaking News',
             body: 'Some breaking content')
     end
 
     before do
-      get '/api/v1/articles/:id', headers: headers
+      get '/api/v1/articles/1', headers: headers
     end
 
     it 'returns a 200 response status' do
@@ -21,8 +22,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
 
     it 'returns article title' do
-      binding.pry
-      expect(response_json["entries"][0]["title"]).to eq "Breaking News"
+      expect(response_json["entries"]["title"]).to eq "Breaking News"
     end
 
   end

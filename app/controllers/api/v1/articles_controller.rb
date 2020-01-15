@@ -1,7 +1,7 @@
 class Api::V1::ArticlesController < ApplicationController
 
   def show
-    article = Article.all
+    article = Article.find(params[:id])
     render json: { entries: article }
   end
 
