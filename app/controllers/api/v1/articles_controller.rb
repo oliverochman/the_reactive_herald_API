@@ -3,7 +3,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def index
     articles = Article.paginate(page: params[:page], per_page: 4)
-    render json: { articles: articles } 
+    render json: articles, each_serializer: Articles::IndexSerializer
   end
 
   def show

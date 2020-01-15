@@ -39,7 +39,7 @@ RSpec.describe Articles, type: :request do
       10.times do
         create(:article,
               title: 'Breaking News',
-              body: 'Some breaking content')
+              body: 'Some breaking content'*10)
       end
     end
 
@@ -54,5 +54,10 @@ RSpec.describe Articles, type: :request do
     it 'returns 4 articles' do
       expect(response_json['articles'].count).to eq 4
     end
+
+    it 'returns only first 75 characters of each article' do
+      expect(response_json['articles'][0]['body'].length).to eq 75
+    end
+
   end
 end
