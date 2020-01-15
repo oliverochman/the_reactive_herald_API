@@ -1,8 +1,8 @@
 class Api::V1::ArticlesController < ApplicationController
-  
-  def index
-    articles = Article.all
-    render json: { entries: articles }
+
+  def show
+    article = Article.all
+    render json: { entries: article }
   end
 
 end
