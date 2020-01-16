@@ -1,4 +1,4 @@
-RSpec.ddescribe 'GET /api/v1/articles', type: :request do
+RSpec.describe 'GET /api/v1/articles', type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
   let!(:article) do
     10.times do
@@ -26,7 +26,7 @@ RSpec.ddescribe 'GET /api/v1/articles', type: :request do
     end
 
     it 'returns metadata for current page' do
-
+      expect(response_json["meta"]["current_page"]).to eq 1
     end  
   end
 
@@ -39,8 +39,17 @@ RSpec.ddescribe 'GET /api/v1/articles', type: :request do
       expect(response).to have_http_status 200
     end
     
-    it 'returns metadata for second page' do
-    
+    it 'returns page 2' do
+      expect(response_json["meta"]["current_page"]).to eq 2
+    end
+
+    it 'returns page 1 for previous page' do
+      expect(response_json["meta"]["prev_page"]).to eq 1
+    end
+
+    it 'returns page 3 for previous page' do
+      expect(response_json["meta"]["next_page"]).to eq 3
     end
   end
+
 end
