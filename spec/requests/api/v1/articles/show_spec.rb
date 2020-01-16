@@ -16,7 +16,7 @@ RSpec.describe 'GET /api/v1/articles/:id', type: :request do
     end
 
     it 'returns article title' do
-      expect(response_json["title"]).to eq "Breaking News"
+      expect(response_json["article"]["title"]).to eq "Breaking News"
     end
   end
 
@@ -25,9 +25,8 @@ RSpec.describe 'GET /api/v1/articles/:id', type: :request do
       get "/api/v1/articles/10000", headers: headers
     end
 
-    it 'returns error if ID does not exist' do
-      expect(response_json["error"]).to eq "ID does not exist"
+    it 'returns error if article does not exist' do
+      expect(response_json["error"]).to eq "Article not found"
     end
-
   end
 end
