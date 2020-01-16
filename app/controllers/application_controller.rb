@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   protected
 
   def article_not_found
-    render json: { error: "Article not found"}
+    render json: { error: "Article not found"}, status: 404
   end
 
   def meta_attributes(resource)    
