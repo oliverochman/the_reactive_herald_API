@@ -2,6 +2,10 @@ class ApplicationController < ActionController::API
 
   protected
 
+  def article_not_found
+    render json: { error: "Article not found"}
+  end
+
   def meta_attributes(resource)    
     {
       current_page: resource.current_page,
@@ -11,5 +15,5 @@ class ApplicationController < ActionController::API
       total_count: resource.total_entries
     }
   end
-  
+
 end

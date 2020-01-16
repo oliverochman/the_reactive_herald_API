@@ -50,6 +50,10 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     it 'returns page 3 for previous page' do
       expect(response_json["meta"]["next_page"]).to eq 3
     end
+
+    it 'returns total number of entries' do
+      expect(response_json["meta"]["total_count"]).to eq 10
+    end
   end
 
 end
