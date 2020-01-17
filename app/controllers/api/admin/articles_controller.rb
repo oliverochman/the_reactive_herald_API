@@ -1,9 +1,16 @@
 class Api::Admin::ArticlesController < ApplicationController
-  before_action :authenticate_user!
+    before_action :authenticate_user!
+
   def create
     authorize(current_user)
+
     article = current_user.articles.create(article_params)
-    render head: :ok
+
+    if article.persisted?
+      render head: :ok
+    else
+      render json: { error: "Missing required fields!"}, status: 422
+    end
   end
 
   private

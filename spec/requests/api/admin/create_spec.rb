@@ -5,9 +5,9 @@ RSpec.describe 'POST /api/admin/articles', type: :request do
 
   let!(:non_authorized_headers) { { HTTP_ACCEPT: 'application/json' } }
 
-  let(:regular_user) { create(:user, role: 'user')}
-  let(:regular_user_credentials) { regular_user.create_new_auth_token }
-  let!(:regular_user_headers) { { HTTP_ACCEPT: 'application/json' }.merge!(regular_user_credentials) }
+  # let(:regular_user) { create(:user, role: 'user')}
+  # let(:regular_user_credentials) { regular_user.create_new_auth_token }
+  # let!(:regular_user_headers) { { HTTP_ACCEPT: 'application/json' }.merge!(regular_user_credentials) }
 
 
 
@@ -25,6 +25,7 @@ RSpec.describe 'POST /api/admin/articles', type: :request do
 
     it 'returns a 200 response status' do
       expect(response).to have_http_status 200
+
     end
   end
 
@@ -46,7 +47,7 @@ RSpec.describe 'POST /api/admin/articles', type: :request do
       end
 
       it 'returns error message' do
-
+        expect(response_json["error"]).to eq "Missing required fields!"
       end
     end
 
