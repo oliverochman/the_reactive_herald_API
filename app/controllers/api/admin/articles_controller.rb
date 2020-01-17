@@ -3,9 +3,9 @@ class Api::Admin::ArticlesController < ApplicationController
 
   def create
     authorize(current_user)
-
+    
     article = current_user.articles.create(article_params)
-
+    
     if article.persisted?
       render head: :ok
     else

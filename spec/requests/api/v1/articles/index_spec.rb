@@ -1,10 +1,13 @@
 RSpec.describe 'GET /api/v1/articles', type: :request do
-  let(:headers) { { HTTP_ACCEPT: 'application/json' } }
+  let(:journalist) { create(:user, role: 'journalist')}
+  let(:journalist_credentials) { journalist.create_new_auth_token }
+  let!(:journalist_headers) { { HTTP_ACCEPT: 'application/json' } }
   let!(:article) do
     10.times do
       create(:article,
             title: 'Breaking News',
-            body: 'Some breaking content'*10)
+            body: 'Some breaking content'*10,
+            journalist_id: journalist.id)
     end
   end
 
