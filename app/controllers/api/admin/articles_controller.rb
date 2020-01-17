@@ -9,7 +9,7 @@ class Api::Admin::ArticlesController < ApplicationController
     if article.persisted?
       render head: :ok
     else
-      render json: { error: "Missing required fields!"}, status: 422
+      render json: { error: article.errors.full_messages }, status: 422
     end
   end
 
