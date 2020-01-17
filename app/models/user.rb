@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  enum role: [:user, :journalist]
+
+  has_many :articles, foreign_key: "journalist_id"
 end

@@ -6,7 +6,6 @@ class UserPolicy < ApplicationPolicy
 	end
 	
 	def create?
-		binding.pry
     @user.journalist?
   end
 end

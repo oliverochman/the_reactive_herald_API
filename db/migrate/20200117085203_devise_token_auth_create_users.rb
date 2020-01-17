@@ -32,6 +32,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.0]
 
       ## Tokens
       t.json :tokens
+      t.integer :role
 
       t.timestamps
       t.integer :sign_in_count, default: 0

@@ -1,7 +1,10 @@
 class Api::Admin::ArticlesController < ApplicationController
-
+  before_action :authenticate_user!
   def create
-    article = Article.create(article_params)
+    authorize(current_user)
+
+    article = current_user.articles.create(article_params)
+    binding.pry
     render head: :ok
   end
 
