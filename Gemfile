@@ -11,6 +11,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'devise_token_auth'
+gem "pundit"
 
 group :development, :test do
   gem 'rspec-rails'
