@@ -4,5 +4,10 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
     role {"user"}
+    factory :journalist do
+      email { "user2@mail.com" }
+      role { :journalist }
+    end
   end
+    
 end

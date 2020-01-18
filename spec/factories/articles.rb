@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
-    title { "MyString" }
-    body { "MyText" }
-    association :journalist, factory: :user
+    title { "Breaking News" }
+    body { "Some breaking content"*10}
+    association :journalist
   end
 end
