@@ -1,13 +1,13 @@
 class Api::Admin::ArticlesController < ApplicationController
-    before_action :authenticate_user!
-
   def create
-    authorize(current_user)
-    
-    article = current_user.articles.create(article_params)
+    binding.pry
+    article = Article.create(article_params)
     
     if article.persisted? && attach_image(article)
-      render head: :ok
+      render json: {
+        article: article, 
+        image: article.image.service_url(expires_in: 1.hour, disposition: 'inline')
+      }
     else
       article.destroy
       render json: { error: article.errors.full_messages }, status: 422

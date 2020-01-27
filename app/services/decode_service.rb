@@ -1,5 +1,6 @@
 module DecodeService
 	def self.attach_image(file, target)
+binding.pry
 		image = Rails.env.test? ? file : split_base64(file)
 
 		decoded_data = Base64.decode64(image[:data])
@@ -12,7 +13,7 @@ module DecodeService
 
 	private
 
-	def self.split_base64(uri_string)
+	def self.split_base64(uri_str)
 		if uri_str =~ /^data:(.*?);(.*?),(.*)$/
       uri = {}
       uri[:type] = Regexp.last_match(1)

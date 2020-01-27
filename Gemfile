@@ -12,6 +12,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'devise_token_auth'
 gem "pundit"
+gem 'aws-sdk', '~> 3'
+
 
 group :development, :test do
   gem 'rspec-rails'
